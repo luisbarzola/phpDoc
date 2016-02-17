@@ -5,6 +5,9 @@ require 'vendor/autoload.php';
 use Doc\app\DocBlockParser;
 use phpDocumentor\Reflection\DocBlockFactory;
 
+/**
+ * Class TestClass bla bla
+ */
 class TestClass {
     /**
      * This is the short description.
@@ -51,3 +54,26 @@ $parameters = $reflectionMethod->getParameters();
 var_dump($parameters[0]->name);
 var_dump($parameters[1]->name);
 
+
+$reflectionClass = new ReflectionClass('TestClass');
+
+$classComment = $reflectionClass->getDocComment();
+
+$reflectionClass->getMethod('fn')->getDocComment();
+
+$docBlockClass = $factory->create($classComment);
+$summaryClass = $docBlock->getSummary();
+
+$description = $docBlock->getDescription();
+$foundDescriptionClass = $description->render();
+var_dump($summaryClass);
+var_dump($foundDescriptionClass);
+
+$methods = $reflectionClass->getMethods();
+array_walk(
+    $methods,
+    function (&$v) {
+        $v = $v->getName();
+    }
+);
+var_dump($methods);
