@@ -59,10 +59,10 @@ $reflectionClass = new ReflectionClass('TestClass');
 
 $classComment = $reflectionClass->getDocComment();
 
-$reflectionClass->getMethod('fn')->getDocComment();
+
 
 $docBlockClass = $factory->create($classComment);
-$summaryClass = $docBlock->getSummary();
+$summaryClass = $docBlockClass->getSummary();
 
 $description = $docBlock->getDescription();
 $foundDescriptionClass = $description->render();
@@ -77,3 +77,6 @@ array_walk(
     }
 );
 var_dump($methods);
+
+
+$parameters =$reflectionClass->getMethod('another_test')->getParameters();
